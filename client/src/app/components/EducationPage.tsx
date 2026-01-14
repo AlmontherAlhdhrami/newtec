@@ -1,9 +1,14 @@
+import { useState } from 'react';
 import { Navigation } from './Navigation';
 import { Card } from './ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { BookOpen, Video, FileText, Users, Crown, Calendar, Palmtree, Building, Mountain, Star, Sparkles } from 'lucide-react';
+import { BookOpen, Video, FileText, Users, Crown, Calendar, Palmtree, Building, Mountain, Star, Sparkles, Map } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { Badge } from './ui/badge';
+import { InteractiveMap } from './InteractiveMap.tsx';
+import { RiyadhPage } from './cities/RiyadhPage';
+import { MedinaPage } from './cities/MedinaPage';
+import { JeddahPage } from './cities/JeddahPage';
 
 type Page = 'home' | 'education' | 'children' | 'tourism' | 'ai-assistant';
 
@@ -12,6 +17,28 @@ interface EducationPageProps {
 }
 
 export function EducationPage({ onNavigate }: EducationPageProps) {
+  const [selectedCity, setSelectedCity] = useState<string | null>(null);
+
+  // Handle city navigation
+  const handleCityClick = (cityId: string) => {
+    setSelectedCity(cityId);
+  };
+
+  const handleBackToEducation = () => {
+    setSelectedCity(null);
+  };
+
+  // Show city pages if a city is selected
+  if (selectedCity === 'riyadh') {
+    return <RiyadhPage onNavigate={onNavigate} onBack={handleBackToEducation} />;
+  }
+  if (selectedCity === 'medina') {
+    return <MedinaPage onNavigate={onNavigate} onBack={handleBackToEducation} />;
+  }
+  if (selectedCity === 'jeddah') {
+    return <JeddahPage onNavigate={onNavigate} onBack={handleBackToEducation} />;
+  }
+
   const articles = [
     {
       id: 1,
@@ -143,6 +170,23 @@ export function EducationPage({ onNavigate }: EducationPageProps) {
 
       {/* Content */}
       <section className="py-16 container mx-auto px-4">
+        {/* Interactive Map Section */}
+        <div className="mb-16">
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Map className="w-10 h-10 text-green-700" />
+              <h2 className="text-4xl font-bold text-green-800" style={{ fontFamily: 'Ruwudu, serif' }}>
+                استكشف مدن المملكة
+              </h2>
+              <Map className="w-10 h-10 text-green-700" />
+            </div>
+            <p className="text-xl text-gray-700" style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}>
+              اكتشف تاريخ وحضارة المدن السعودية من خلال خريطتنا التفاعلية
+            </p>
+          </div>
+          <InteractiveMap onCityClick={handleCityClick} />
+        </div>
+
         <Tabs defaultValue="articles" className="w-full">
           <TabsList className="grid w-full grid-cols-3 mb-12 max-w-3xl mx-auto h-auto bg-gradient-to-r from-green-100 to-amber-100 p-2 rounded-2xl shadow-lg border-2 border-green-200" style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}>
             <TabsTrigger value="articles" className="text-lg py-4 rounded-xl font-bold data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-700 data-[state=active]:to-green-600 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all">
