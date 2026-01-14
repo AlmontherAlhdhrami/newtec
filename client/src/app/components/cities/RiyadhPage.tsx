@@ -4,7 +4,9 @@ import { Badge } from '../ui/badge';
 import { 
   ArrowRight, Building2, Users, Landmark, History, 
   Calendar, Trophy, MapPin, Sparkles, Crown, Star,
-  TreePine, Factory, Coins, GraduationCap, Palmtree
+  TreePine, Factory, Coins, GraduationCap, Palmtree,
+  ShieldCheck, Map as MapIcon, Landmark as Monument,
+  Tent, Droplets, Sword
 } from 'lucide-react';
 import { Button } from '../ui/button';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
@@ -18,56 +20,26 @@ interface RiyadhPageProps {
 
 export function RiyadhPage({ onNavigate, onBack }: RiyadhPageProps) {
   const landmarks = [
-    { name: 'برج المملكة', icon: Building2, description: 'أحد أطول الأبراج في المملكة بارتفاع 302 متر' },
-    { name: 'قصر المصمك', icon: Landmark, description: 'قلعة تاريخية شهدت توحيد المملكة' },
-    { name: 'وادي حنيفة', icon: TreePine, description: 'محمية طبيعية تمتد لمسافة 120 كم' },
-    { name: 'المتحف الوطني', icon: History, description: 'يحكي قصة الجزيرة العربية عبر العصور' },
-    { name: 'قصر الحكم', icon: Crown, description: 'مقر الإمارة ورمز الحكم في نجد' },
-    { name: 'برج الفيصلية', icon: Building2, description: 'أول ناطحة سحاب في السعودية' },
+    { name: 'الدرعية التاريخية', icon: Monument, description: 'جوهرة المملكة وموقع اليونسكو، العاصمة الأولى للدولة السعودية وحي الطريف بقصوره الطينية.' },
+    { name: 'قصر المصمك', icon: Sword, description: 'حصن اللبن التاريخي في حي الديرة، شهد معركة فتح الرياض عام 1902م ويعد رمز التوحيد.' },
+    { name: 'مركز الملك عبدالعزيز التاريخي', icon: Landmark, description: 'يضم قصر المربع والمتحف الوطني، ويعرض قطعاً أثرية نادرة من مختلف العصور.' },
+    { name: 'حي الديرة والأسواق القديمة', icon: Tent, description: 'يضم سوق الزل العريق، بوابة الثميري، وجامع الإمام تركي بن عبدالله.' },
+    { name: 'وادي حنيفة', icon: Droplets, description: 'متنزه بيئي يمتد لمسافات طويلة، شهد استقرار القبائل منذ القدم ويضم مزارع تقليدية.' },
+    { name: 'قرية الفاو', icon: MapIcon, description: 'عاصمة مملكة كندة الأثرية (جنوب غرب الرياض)، تضم بقايا معابد ونقوش ما قبل الإسلام.' },
   ];
 
-  const tribes = [
-    { name: 'عنزة', description: 'من أكبر القبائل العربية في نجد' },
-    { name: 'تميم', description: 'قبيلة عريقة في وسط الجزيرة العربية' },
-    { name: 'سبيع', description: 'قبيلة نجدية ذات تاريخ عريق' },
-    { name: 'قحطان', description: 'من القبائل الكبرى في المملكة' },
-    { name: 'شمر', description: 'قبيلة عربية أصيلة في نجد' },
-    { name: 'الدواسر', description: 'قبيلة لها حضور قوي في الرياض' },
+  const historicalTimeline = [
+    { year: 'العصور القديمة', event: 'موطن الساميين', description: 'استوطنتها قبائل طسم وجديس البائدة، وترتبط أساطيرها بزرقاء اليمامة.' },
+    { year: 'القرن 5 ميلادي', event: 'بنو حنيفة', description: 'تأسيس مدينة "حجر" وبروز شخصيات مثل ثمامة بن أثال، وشهدت معركة اليمامة.' },
+    { year: '1824م', event: 'عاصمة الدولة الثانية', description: 'اتخذها الإمام تركي بن عبدالله عاصمة للدولة السعودية الثانية.' },
+    { year: '1902م', event: 'انطلاقة التوحيد', description: 'استعادة الملك عبدالعزيز للرياض وبدء تأسيس المملكة الحديثة.' },
+    { year: 'المرحلة المعاصرة', event: 'النهضة الكبرى', description: 'التحول لميتروبوليتان ضخم مع مشاريع رؤية 2030 مثل حديقة الملك سلمان والرياض الخضراء.' },
   ];
 
-  const resources = [
-    { name: 'النفط والغاز', icon: Factory, description: 'مركز إدارة قطاع الطاقة في المملكة' },
-    { name: 'الخدمات المالية', icon: Coins, description: 'مركز مالي واقتصادي رئيسي' },
-    { name: 'التعليم والبحث', icon: GraduationCap, description: 'موطن أكبر الجامعات السعودية' },
-    { name: 'التقنية والابتكار', icon: Sparkles, description: 'مركز التحول الرقمي والتقنية' },
-  ];
-
-  const historicalEvents = [
-    { year: '1902', event: 'استرداد الرياض', description: 'استرد الملك عبدالعزيز الرياض في معركة تاريخية' },
-    { year: '1932', event: 'عاصمة المملكة', description: 'أصبحت الرياض العاصمة الرسمية للمملكة الموحدة' },
-    { year: '1953', event: 'بداية التطور', description: 'بدء خطط التطوير العمراني الحديث' },
-    { year: '2030', event: 'رؤية المستقبل', description: 'محور أساسي في رؤية المملكة 2030' },
-  ];
-
-  const culturalEvents = [
-    {
-      name: 'موسم الرياض',
-      period: 'أكتوبر - مارس',
-      description: 'أكبر موسم ترفيهي في المنطقة يضم فعاليات عالمية متنوعة',
-      image: 'https://images.unsplash.com/photo-1539635278303-d4002c07eae3?w=800'
-    },
-    {
-      name: 'مهرجان الجنادرية',
-      period: 'فبراير',
-      description: 'مهرجان تراثي يعرض الثقافة والتقاليد السعودية الأصيلة',
-      image: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800'
-    },
-    {
-      name: 'سباق فورمولا إي',
-      period: 'يناير',
-      description: 'سباق السيارات الكهربائية في شوارع الدرعية التاريخية',
-      image: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800'
-    },
+  const demographics = [
+    { category: 'سعوديون', count: '4.4 مليون', percentage: '51.7%', color: 'bg-green-600' },
+    { category: 'غير سعوديين', count: '4.1 مليون', percentage: '48.3%', color: 'bg-amber-600' },
+    { category: 'الإجمالي', count: '8.59 مليون', percentage: '100%', color: 'bg-blue-600' },
   ];
 
   return (
@@ -75,257 +47,131 @@ export function RiyadhPage({ onNavigate, onBack }: RiyadhPageProps) {
       <Navigation onNavigate={onNavigate} currentPage="education" />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-green-700 via-green-600 to-amber-600 text-white py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-r from-green-800 via-green-700 to-amber-700 text-white py-24 overflow-hidden">
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, currentColor 10px, currentColor 11px)' }}></div>
         
         <div className="container mx-auto px-4 relative z-10">
           <Button
             onClick={onBack}
             variant="outline"
-            className="mb-6 bg-white/10 hover:bg-white/20 text-white border-white/30 font-bold"
-            style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}
+            className="mb-8 bg-white/10 hover:bg-white/20 text-white border-white/30 font-bold backdrop-blur-sm"
           >
             <ArrowRight className="w-5 h-5 ml-2" />
             العودة للخريطة
           </Button>
 
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <Building2 className="w-16 h-16 text-amber-300 animate-pulse" />
-            <Crown className="w-20 h-20 text-amber-200" />
-            <Building2 className="w-16 h-16 text-amber-300 animate-pulse" />
-          </div>
-
           <div className="text-center">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Star className="w-8 h-8 text-amber-400 fill-amber-400" />
-              <h1 className="text-6xl font-bold text-amber-100" style={{ fontFamily: 'Ruwudu, serif' }}>
-                الرياض
-              </h1>
-              <Star className="w-8 h-8 text-amber-400 fill-amber-400" />
-            </div>
-            
-            <p className="text-3xl text-amber-50 mb-4 font-semibold" style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}>
-              عاصمة المملكة العربية السعودية
+            <Badge className="mb-4 bg-amber-400 text-green-900 hover:bg-amber-300 font-bold px-4 py-1">قلب المملكة النابض</Badge>
+            <h1 className="text-7xl font-bold text-amber-100 mb-6" style={{ fontFamily: 'Ruwudu, serif' }}>الرياض</h1>
+            <p className="text-3xl text-amber-50/90 max-w-3xl mx-auto leading-relaxed font-medium" style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}>
+              من "حِجْر" اليمامة إلى عاصمة المتروبوليتان العالمية
             </p>
-
-            <div className="flex items-center justify-center gap-8 mt-6">
-              <div className="flex items-center gap-2">
-                <Users className="w-6 h-6 text-amber-300" />
-                <span className="text-xl text-amber-100" style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}>7.6 مليون نسمة</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-6 h-6 text-amber-300" />
-                <span className="text-xl text-amber-100" style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}>منطقة نجد - وسط المملكة</span>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Introduction */}
-      <section className="py-12 container mx-auto px-4">
-        <Card className="p-8 bg-gradient-to-br from-white to-amber-50 border-4 border-green-200 shadow-xl">
-          <div className="flex items-center gap-3 mb-6">
-            <Sparkles className="w-8 h-8 text-amber-600" />
-            <h2 className="text-3xl font-bold text-green-800" style={{ fontFamily: 'Ruwudu, serif' }}>
-              نبذة عن المدينة
-            </h2>
+      {/* Landmarks Grid */}
+      <section className="py-16 container mx-auto px-4">
+        <div className="flex items-center gap-4 mb-12 border-r-8 border-green-600 pr-6">
+          <div>
+            <h2 className="text-4xl font-bold text-green-900" style={{ fontFamily: 'Ruwudu, serif' }}>أهم المناطق والمعالم</h2>
+            <p className="text-gray-600 mt-2 text-lg">شواهد التاريخ وكنوز التراث العالمي</p>
           </div>
-          <p className="text-xl leading-relaxed text-gray-700 mb-4" style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}>
-            الرياض عاصمة المملكة العربية السعودية وأكبر مدنها، تقع في قلب الجزيرة العربية في إقليم نجد التاريخي. 
-            شهدت المدينة تحولاً هائلاً من واحة صحراوية صغيرة إلى واحدة من أسرع المدن نمواً في العالم، لتصبح مركزاً 
-            إدارياً واقتصادياً وثقافياً رئيسياً في المنطقة.
-          </p>
-          <p className="text-xl leading-relaxed text-gray-700" style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}>
-            تجمع الرياض بشكل فريد بين التراث العريق والحداثة المتطورة، حيث تقف القلاع التاريخية جنباً إلى جنب 
-            مع ناطحات السحاب الشاهقة، وتمتزج الأسواق التقليدية مع مراكز التسوق العصرية، مما يجعلها نموذجاً حياً 
-            للمزج بين الأصالة والمعاصرة.
-          </p>
-        </Card>
-      </section>
-
-      {/* Important Places */}
-      <section className="py-12 container mx-auto px-4">
-        <div className="flex items-center gap-3 mb-8">
-          <Landmark className="w-10 h-10 text-green-700" />
-          <h2 className="text-4xl font-bold text-green-800" style={{ fontFamily: 'Ruwudu, serif' }}>
-            أهم المعالم والمناطق
-          </h2>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {landmarks.map((landmark, index) => (
-            <Card key={index} className="p-6 hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-green-50 border-3 border-green-200 group cursor-pointer">
-              <div className="flex items-start gap-4">
-                <div className="bg-gradient-to-br from-green-600 to-green-700 p-4 rounded-xl group-hover:scale-110 transition-transform">
-                  <landmark.icon className="w-8 h-8 text-amber-200" />
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {landmarks.map((item, index) => (
+            <Card key={index} className="group hover:shadow-2xl transition-all duration-500 border-none bg-white overflow-hidden">
+              <div className="p-8">
+                <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-green-600 transition-colors duration-300">
+                  <item.icon className="w-8 h-8 text-green-700 group-hover:text-white" />
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-green-800 mb-2" style={{ fontFamily: 'Ruwudu, serif' }}>
-                    {landmark.name}
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed" style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}>
-                    {landmark.description}
-                  </p>
-                </div>
+                <h3 className="text-2xl font-bold text-green-800 mb-4" style={{ fontFamily: 'Ruwudu, serif' }}>{item.name}</h3>
+                <p className="text-gray-600 leading-relaxed text-lg" style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}>{item.description}</p>
               </div>
             </Card>
           ))}
         </div>
       </section>
 
-      {/* Population & Tribes */}
-      <section className="py-12 bg-gradient-to-r from-green-50 to-amber-50">
+      {/* History Timeline */}
+      <section className="py-16 bg-green-900 text-white">
         <div className="container mx-auto px-4">
-          <div className="flex items-center gap-3 mb-8">
-            <Users className="w-10 h-10 text-amber-700" />
-            <h2 className="text-4xl font-bold text-green-800" style={{ fontFamily: 'Ruwudu, serif' }}>
-              السكان والقبائل
-            </h2>
+          <div className="flex items-center gap-4 mb-16 justify-center">
+            <History className="w-10 h-10 text-amber-400" />
+            <h2 className="text-4xl font-bold" style={{ fontFamily: 'Ruwudu, serif' }}>تاريخ الرياض عبر العصور</h2>
           </div>
 
-          <Card className="p-8 bg-white border-4 border-amber-200 shadow-xl mb-6">
-            <p className="text-xl leading-relaxed text-gray-700 mb-6" style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}>
-              تعد الرياض موطناً لخليط متنوع من السكان، حيث تجتمع فيها قبائل نجد الأصيلة مع سكان من مختلف 
-              مناطق المملكة والمقيمين من جنسيات متعددة. تشتهر المدينة بكرم الضيافة النجدية الأصيلة والتمسك 
-              بالقيم العربية الأصيلة.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {tribes.map((tribe, index) => (
-                <div key={index} className="bg-gradient-to-br from-amber-50 to-green-50 p-5 rounded-xl border-2 border-green-200">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Palmtree className="w-5 h-5 text-amber-600" />
-                    <h3 className="text-lg font-bold text-green-800" style={{ fontFamily: 'Ruwudu, serif' }}>
-                      {tribe.name}
-                    </h3>
-                  </div>
-                  <p className="text-gray-700 text-sm" style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}>
-                    {tribe.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </Card>
-        </div>
-      </section>
-
-      {/* Resources */}
-      <section className="py-12 container mx-auto px-4">
-        <div className="flex items-center gap-3 mb-8">
-          <Factory className="w-10 h-10 text-green-700" />
-          <h2 className="text-4xl font-bold text-green-800" style={{ fontFamily: 'Ruwudu, serif' }}>
-            الموارد الاقتصادية
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {resources.map((resource, index) => (
-            <Card key={index} className="p-8 bg-gradient-to-br from-white to-amber-50 border-4 border-green-200 hover:shadow-xl transition-all group">
-              <div className="flex items-start gap-4">
-                <div className="bg-gradient-to-br from-amber-500 to-amber-600 p-4 rounded-2xl group-hover:scale-110 transition-transform">
-                  <resource.icon className="w-10 h-10 text-white" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-green-800 mb-3" style={{ fontFamily: 'Ruwudu, serif' }}>
-                    {resource.name}
-                  </h3>
-                  <p className="text-gray-700 text-lg leading-relaxed" style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}>
-                    {resource.description}
-                  </p>
+          <div className="relative border-r-2 border-amber-400/30 pr-8 mr-4 space-y-12">
+            {historicalTimeline.map((step, index) => (
+              <div key={index} className="relative">
+                <div className="absolute -right-[41px] top-0 w-5 h-5 bg-amber-400 rounded-full border-4 border-green-900 shadow-[0_0_0_4px_rgba(251,191,36,0.2)]"></div>
+                <div className="bg-white/5 p-6 rounded-2xl backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all">
+                  <span className="text-amber-400 font-bold text-xl mb-2 block">{step.year}</span>
+                  <h3 className="text-2xl font-bold mb-3" style={{ fontFamily: 'Ruwudu, serif' }}>{step.event}</h3>
+                  <p className="text-green-50/80 leading-relaxed text-lg">{step.description}</p>
                 </div>
               </div>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* History */}
-      <section className="py-12 bg-gradient-to-r from-amber-50 to-green-50">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center gap-3 mb-8">
-            <History className="w-10 h-10 text-amber-700" />
-            <h2 className="text-4xl font-bold text-green-800" style={{ fontFamily: 'Ruwudu, serif' }}>
-              التاريخ والمحطات المهمة
-            </h2>
-          </div>
-
-          <div className="space-y-6">
-            {historicalEvents.map((event, index) => (
-              <Card key={index} className="p-6 bg-white border-l-8 border-green-600 hover:shadow-xl transition-all">
-                <div className="flex items-start gap-6">
-                  <div className="bg-gradient-to-br from-green-600 to-green-700 text-white px-6 py-4 rounded-2xl min-w-[120px] text-center">
-                    <div className="text-3xl font-bold" style={{ fontFamily: 'Ruwudu, serif' }}>{event.year}</div>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-green-800 mb-2" style={{ fontFamily: 'Ruwudu, serif' }}>
-                      {event.event}
-                    </h3>
-                    <p className="text-gray-700 text-lg leading-relaxed" style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}>
-                      {event.description}
-                    </p>
-                  </div>
-                </div>
-              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Cultural Events */}
-      <section className="py-12 container mx-auto px-4">
-        <div className="flex items-center gap-3 mb-8">
-          <Trophy className="w-10 h-10 text-amber-700" />
-          <h2 className="text-4xl font-bold text-green-800" style={{ fontFamily: 'Ruwudu, serif' }}>
-            الحضارة والفعاليات الحالية
-          </h2>
-        </div>
+      {/* Population & Tribes */}
+      <section className="py-16 container mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div className="flex items-center gap-3 mb-6">
+              <Users className="w-10 h-10 text-amber-600" />
+              <h2 className="text-4xl font-bold text-green-900" style={{ fontFamily: 'Ruwudu, serif' }}>السكان والنسيج المجتمعي</h2>
+            </div>
+            <div className="space-y-6 text-xl text-gray-700 leading-relaxed" style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}>
+              <p>
+                بدأت القصة مع <span className="font-bold text-green-700">بني حنيفة</span> الذين استوطنوا "حجر اليمامة"، وهم الجذم الذي تنحدر منه أسرة آل سعود.
+              </p>
+              <p>
+                اليوم، تعد الرياض "بوصلة" استقطبت أبناء القبائل الكبرى مثل <span className="text-amber-700">عتيبة، مطير، قحطان، الدواسر، شمر، وحرب</span>، لتشكل نسيجاً يمزج بين العوائل الحاضرة والبادية.
+              </p>
+            </div>
 
-        <p className="text-xl leading-relaxed text-gray-700 mb-8 max-w-4xl" style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}>
-          تشهد الرياض نهضة ثقافية وحضارية غير مسبوقة، حيث تستضيف العديد من الفعاليات العالمية والمهرجانات 
-          الثقافية التي تجمع بين التراث الأصيل والترفيه المعاصر، مما يجعلها وجهة سياحية وثقافية رائدة في المنطقة.
-        </p>
+            <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {demographics.map((stat, i) => (
+                <div key={i} className="p-4 rounded-xl border-2 border-amber-100 bg-amber-50/50">
+                  <p className="text-sm text-gray-500 mb-1">{stat.category}</p>
+                  <p className="text-2xl font-bold text-green-800">{stat.count}</p>
+                  <Badge variant="secondary" className="mt-2">{stat.percentage}</Badge>
+                </div>
+              ))}
+            </div>
+            <p className="text-xs text-gray-400 mt-4 italic">* حسب تعداد عام 2022م</p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {culturalEvents.map((event, index) => (
-            <Card key={index} className="overflow-hidden hover:shadow-2xl transition-all duration-300 group border-4 border-amber-200 hover:border-green-500">
-              <div className="relative h-64 overflow-hidden">
-                <ImageWithFallback
-                  src={event.image}
-                  alt={event.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <Badge className="absolute top-4 right-4 bg-gradient-to-r from-amber-600 to-amber-500 text-white font-bold text-base px-4 py-2" style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}>
-                  {event.period}
-                </Badge>
+          <Card className="p-8 border-none bg-gradient-to-br from-green-50 to-amber-50 shadow-inner">
+            <h3 className="text-2xl font-bold text-green-800 mb-6 flex items-center gap-2">
+              <ShieldCheck className="w-6 h-6" /> التحديات والأمن
+            </h3>
+            <div className="space-y-6">
+              <div className="bg-white p-5 rounded-xl shadow-sm">
+                <h4 className="font-bold text-red-700 mb-2">فترة (1995-2004)</h4>
+                <p className="text-gray-600">واجهت المدينة تحديات أمنية وهجمات إرهابية تم التعامل معها بحزم وقوة أمنية.</p>
               </div>
-              <div className="p-6 bg-gradient-to-br from-white to-amber-50">
-                <h3 className="text-2xl font-bold text-green-800 mb-3" style={{ fontFamily: 'Ruwudu, serif' }}>
-                  {event.name}
-                </h3>
-                <p className="text-gray-700 leading-relaxed" style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}>
-                  {event.description}
-                </p>
+              <div className="bg-white p-5 rounded-xl shadow-sm border-r-4 border-green-500">
+                <h4 className="font-bold text-green-700 mb-2">الدفاع الجوي (2017-2020)</h4>
+                <p className="text-gray-600">نجحت قوات الدفاع الجوي السعودي في اعتراض وتدمير كافة محاولات الاستهداف بالصواريخ البالستية.</p>
               </div>
-            </Card>
-          ))}
+            </div>
+          </Card>
         </div>
       </section>
 
-      {/* Footer */}
-      <section className="py-12 bg-gradient-to-r from-green-700 to-green-800 text-white">
+      {/* Footer / Summary */}
+      <section className="py-12 bg-amber-100 border-t-4 border-amber-200">
         <div className="container mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Star className="w-8 h-8 text-amber-400 fill-amber-400 animate-pulse" />
-            <h3 className="text-3xl font-bold" style={{ fontFamily: 'Ruwudu, serif' }}>
-              الرياض - قلب المملكة النابض
-            </h3>
-            <Star className="w-8 h-8 text-amber-400 fill-amber-400 animate-pulse" />
-          </div>
-          <p className="text-xl text-amber-100 max-w-3xl mx-auto" style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}>
-            مدينة تجمع بين عراقة الماضي وطموحات المستقبل، لتكون نموذجاً حضارياً فريداً في قلب الجزيرة العربية
+          <Palmtree className="w-12 h-12 text-green-700 mx-auto mb-4" />
+          <p className="text-2xl text-green-900 font-bold mb-2" style={{ fontFamily: 'Ruwudu, serif' }}>
+            الرياض: حيث تعانق قصور الطين ناطحات السحاب
           </p>
+          <p className="text-gray-600 italic">المصدر: توثيق تاريخي وتعداد 2022</p>
         </div>
       </section>
     </div>
