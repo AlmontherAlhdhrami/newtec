@@ -39,12 +39,9 @@ export function Navigation({ onNavigate, currentPage = 'home' }: NavigationProps
             </div>
             <div>
               <h1 className="text-3xl font-bold text-green-800 flex items-center gap-2" style={{ fontFamily: 'Ruwudu, serif', fontWeight: 700 }}>
-                تراث المملكة
-                <span className="text-2xl">🇸🇦</span>
+                خَضَب و عود
               </h1>
-              <p className="text-base text-amber-600 font-semibold" style={{ fontFamily: 'Noto Kufi Arabic, sans-serif' }}>
-                رحلة في التاريخ والثقافة والتراث
-              </p>
+             
             </div>
           </div>
 
